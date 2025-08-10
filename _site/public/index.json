@@ -1,0 +1,99 @@
+[
+{
+	"uri": "/1.1-install-node-awscli-cdk/",
+	"title": "1.1 Install Node.js, AWS CLI, and AWS CDK",
+	"tags": [],
+	"description": "",
+	"content": "1. Install Node.js # Download and install Node.js (LTS version) https://nodejs.org/en/download/ Verify installation:\nnode -v npm -v 2. Install AWS CLI # Download AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html Verify installation:\naws --version 3. Install AWS CDK npm install -g aws-cdk Verify installation:\ncdk --version "
+},
+{
+	"uri": "/1.2-configure-aws-credentials/",
+	"title": "1.2 Configure AWS Credentials",
+	"tags": [],
+	"description": "",
+	"content": "1. Create an IAM user  Go to AWS Console → IAM → Users → Add User. Enable \u0026ldquo;Programmatic access\u0026rdquo;. Assign appropriate permissions (e.g., AdministratorAccess).  2. Get Access Keys Download .csv file containing Access Key ID and Secret Access Key.\n3. Configure locally aws configure # AWS Access Key ID: \u0026lt;your-key-id\u0026gt; # AWS Secret Access Key: \u0026lt;your-secret-key\u0026gt; # Default region name: ap-southeast-1 # Default output format: json 4. Test configuration aws s3 ls "
+},
+{
+	"uri": "/1.3-bootstrap-cdk/",
+	"title": "1.3 Bootstrap AWS CDK",
+	"tags": [],
+	"description": "",
+	"content": "Bootstrapping prepares your AWS environment for AWS CDK deployment.\ncdk bootstrap aws://\u0026lt;account-id\u0026gt;/\u0026lt;region\u0026gt; Example:\ncdk bootstrap aws://123456789012/ap-southeast-1 This creates necessary resources (e.g., S3 buckets, roles) for deployment.\n"
+},
+{
+	"uri": "/2.1-create-new-cdk-project/",
+	"title": "2.1 Create a New AWS CDK Project",
+	"tags": [],
+	"description": "",
+	"content": "mkdir my-cdk-app cd my-cdk-app cdk init app --language typescript This generates:\n bin/ → entry point lib/ → main stack code cdk.json → configuration package.json → dependencies  "
+},
+{
+	"uri": "/2.2-define-first-stack/",
+	"title": "2.2 Define Your First Stack",
+	"tags": [],
+	"description": "",
+	"content": "Edit lib/lambda-api-stack.ts:\nimport { LambdaWithApi } from \u0026#39;./constructs/lambda-with-api\u0026#39;; import { Construct } from \u0026#39;constructs\u0026#39;; import { Stack, StackProps } from \u0026#39;aws-cdk-lib\u0026#39;; import * as s3 from \u0026#39;aws-cdk-lib/aws-s3\u0026#39;; interface LambdaApiStackProps extends StackProps { bucket: s3.IBucket; } export class LambdaApiStack extends Stack { constructor(scope: Construct, id: string, props: LambdaApiStackProps) { super(scope, id, props); new LambdaWithApi(this, \u0026#39;LambdaWithApi\u0026#39;, { bucket: props.bucket, }); } } #!/usr/bin/env node import * as cdk from \u0026#39;aws-cdk-lib\u0026#39;; import { BucketStack } from \u0026#39;../lib/bucket-stack\u0026#39;; import { LambdaApiStack } from \u0026#39;../lib/lambda-api-stack\u0026#39;; const app = new cdk.App(); // Tạo bucket stack const bucketStack = new BucketStack(app, \u0026#39;BucketStack\u0026#39;); // Tạo lambda + api stack, truyền bucket từ bucketStack sang lambda new LambdaApiStack(app, \u0026#39;LambdaApiStack\u0026#39;, { bucket: bucketStack.bucket, }); Deploy:\ncdk deploy "
+},
+{
+	"uri": "/3.1-split-stacks/",
+	"title": "3.1 Split Stacks",
+	"tags": [],
+	"description": "",
+	"content": "Splitting stacks improves maintainability.\nExample:\n BucketStack → S3 bucket resources LambdaApiStack → Lambda + API Gateway  Use cross-stack references with export/import patterns.\n"
+},
+{
+	"uri": "/3.2-custom-constructs/",
+	"title": "3.2 Custom Constructs",
+	"tags": [],
+	"description": "",
+	"content": "A custom construct is a reusable AWS resource definition.\nExample: lambda-with-api.ts\nimport { Construct } from \u0026#39;constructs\u0026#39;; import * as lambda from \u0026#39;aws-cdk-lib/aws-lambda\u0026#39;; import * as apigateway from \u0026#39;aws-cdk-lib/aws-apigateway\u0026#39;; import * as s3 from \u0026#39;aws-cdk-lib/aws-s3\u0026#39;; interface LambdaWithApiProps { bucket: s3.IBucket; } export class LambdaWithApi extends Construct { public readonly api: apigateway.LambdaRestApi; public readonly lambdaFn: lambda.Function; constructor(scope: Construct, id: string, props: LambdaWithApiProps) { super(scope, id); this.lambdaFn = new lambda.Function(this, \u0026#39;MyLambda\u0026#39;, { runtime: lambda.Runtime.NODEJS_18_X, code: lambda.Code.fromAsset(\u0026#39;lambda\u0026#39;), handler: \u0026#39;hello.handler\u0026#39;, environment: { BUCKET_NAME: props.bucket.bucketName, }, }); // ✅ Tạo phiên bản hiện tại của Lambda  const version = this.lambdaFn.currentVersion; // ✅ (Tuỳ chọn) Alias trỏ vào version hiện tại (giúp rollback nếu cần)  new lambda.Alias(this, \u0026#39;MyLambdaAlias\u0026#39;, { aliasName: \u0026#39;live\u0026#39;, version, }); // 👇 Cấp quyền ghi vào S3 cho Lambda  props.bucket.grantWrite(this.lambdaFn); this.api = new apigateway.LambdaRestApi(this, \u0026#39;MyApiGateway\u0026#39;, { handler: this.lambdaFn, }); } } Result: "
+},
+{
+	"uri": "/4.1-automated-testing/",
+	"title": "4.1 Automated Testing",
+	"tags": [],
+	"description": "",
+	"content": "Use jest for unit testing your CDK code.\nInstall:\nnpm install --save-dev jest @types/jest ts-jest Run tests:\nnpm run test Result: "
+},
+{
+	"uri": "/4.2-version-control/",
+	"title": "4.2 Version Control with Git",
+	"tags": [],
+	"description": "",
+	"content": "git init git add . git commit -m \u0026#34;Initial commit\u0026#34; git branch -M main git remote add origin \u0026lt;repo-url\u0026gt; git push -u origin main Result: "
+},
+{
+	"uri": "/5.1-deploy/",
+	"title": "5.1 Deploy the Application",
+	"tags": [],
+	"description": "",
+	"content": "cdk deploy Result: "
+},
+{
+	"uri": "/5.2-destroy/",
+	"title": "5.2 Destroy the Application",
+	"tags": [],
+	"description": "",
+	"content": "cdk destroy "
+},
+{
+	"uri": "/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/",
+	"title": "Create a new AWS account.",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

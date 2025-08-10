@@ -1,0 +1,48 @@
+<p>En utilisant la commande: <code class="language-plaintext highlighter-rouge">hugo new [chemin vers nouveau contenu]</code>, vous pouvez créer un nouveau fichier avec la date et le title automatiquement initialisé. Même si c’est une fonctionnalité intéressante, elle reste limitée pour les auteurs actifs qui ont besoin de mieux : les <a href="https://gohugo.io/content/archetypes/">archetypes</a>.</p>
+
+<p>Les archétypes sont des squelettes de pages préconfigurées avec un Front Matter par défaut. Merci de vous référer à la documentation pour connaitre les différents types de page.</p>
+
+<h2 id="archetypes-chapter">Chapitre</h2>
+
+<p>Pour créer un chapitre, lancez les commandes suivantes</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hugo new --kind chapter &lt;name&gt;/_index.md
+</code></pre></div></div>
+
+<p>Cela crééra une page avec le Front Matter suivant:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+++
+title = ""
+date = 
+weight = 5
+chapter = true
+pre = "<span class="nt">&lt;b&gt;</span>X. <span class="nt">&lt;/b&gt;</span>"
++++
+
+<span class="gu">### Chapter X</span>
+
+<span class="gh"># Some Chapter title</span>
+
+Lorem Ipsum.
+</code></pre></div></div>
+
+<h2 id="défaut">Défaut</h2>
+
+<p>Pour créer une page classique, lancer l’une des deux commandes suivantes</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Soit
+hugo new &lt;chapter&gt;/&lt;name&gt;/_index.md
+# Ou
+hugo new &lt;chapter&gt;/&lt;name&gt;.md
+</code></pre></div></div>
+
+<p>Cela crééra une page avec le Front Matter suivant:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+++
+title = ""
+date =  
+weight = 5
++++
+
+Lorem Ipsum.
+</code></pre></div></div>

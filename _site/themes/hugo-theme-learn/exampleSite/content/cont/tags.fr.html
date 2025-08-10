@@ -1,0 +1,29 @@
+<p>Le <em>thème Learn</em> supporte une des taxonomy par défaut de GoHugo : les tags.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Il suffit d’ajouter un tableau de tags sur la page  :</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">2018-11-29T08:41:44+01:00</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Tutoriel pour le thème</span>
+<span class="na">weight</span><span class="pi">:</span> <span class="m">15</span>
+<span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">tutoriel"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">theme"</span><span class="pi">]</span> 
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<h2 id="comportement">Comportement</h2>
+
+<p>Les tags sont affichés en haut de la page, dans l’ordre dans lequel ils ont été saisis.</p>
+
+<p>Chaque tag est un lien vers une page <em>Taxonomy</em>, qui affiche tous les article avec ce tag.</p>
+
+<h2 id="liste-des-tags">Liste des tags</h2>
+
+<p>Il est possible de rajouter un raccourci dans le fichier <code class="language-plaintext highlighter-rouge">config.toml</code> afin d’afficher une page listant tous les tags</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[[menu.shortcuts]]</span>
+<span class="py">name</span> <span class="p">=</span> <span class="s">"&lt;i class='fas fa-tags'&gt;&lt;/i&gt; Tags"</span>
+<span class="py">url</span> <span class="p">=</span> <span class="s">"/tags"</span>
+<span class="py">weight</span> <span class="p">=</span> <span class="mi">30</span>
+</code></pre></div></div>

@@ -1,0 +1,105 @@
+<p>Vous pouvez définir des entrées ou raccourcis supplémentaires dans le menu sans avoir besoin d’être lié à un contenu du site.</p>
+
+<h2 id="configuration-simple">Configuration simple</h2>
+
+<p>Editez le fichier de configuration <code class="language-plaintext highlighter-rouge">config.toml</code> et ajoutez une entrée <code class="language-plaintext highlighter-rouge">[[menu.shortcuts]]</code> pour chaque lien que vous voulez ajouter.</p>
+
+<p>Exemple pour ce site:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[menu.shortcuts]] 
+name = "&lt;i class='fab fa-github'&gt;&lt;/i&gt; Github repo"
+identifier = "ds"
+url = "https://github.com/matcornic/hugo-theme-learn"
+weight = 10
+
+[[menu.shortcuts]]
+name = "&lt;i class='fas fa-camera'&gt;&lt;/i&gt; Showcases"
+url = "/showcase"
+weight = 11
+
+[[menu.shortcuts]]
+name = "&lt;i class='fas fa-bookmark'&gt;&lt;/i&gt; Hugo Documentation"
+identifier = "hugodoc"
+url = "https://gohugo.io/"
+weight = 20
+
+[[menu.shortcuts]]
+name = "&lt;i class='fas fa-bullhorn'&gt;&lt;/i&gt; Credits"
+url = "/credits"
+weight = 30
+</code></pre></div></div>
+
+<p>Par défaut, les raccourcis sont précédés par un titre. Ce titre peut être désactivé en ajouter le paramètre <code class="language-plaintext highlighter-rouge">disableShortcutsTitle=true</code> dans la section <code class="language-plaintext highlighter-rouge">params</code> de votre <code class="language-plaintext highlighter-rouge">config.toml</code>. 
+Cependant, si vous voulez garder le titre mais changer sa valeur, vous pouvez modifier votre configuration multilangue locale en changeant les <em>translation string</em>.</p>
+
+<p>Par exemple, dans votre fichier local <code class="language-plaintext highlighter-rouge">i18n/en.toml</code>, ajouter le contenu</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Shortcuts-Title]
+other = "&lt;Votre valeur&gt;"
+</code></pre></div></div>
+
+<p>Plus d’infos sur <a href="https://gohugo.io/extras/menus/">les menus Hugo</a> et sur <a href="https://gohugo.io/content-management/multilingual/#translation-of-strings">les translations strings</a></p>
+
+<h2 id="i18n">Configuration pour le mode multi-langue</h2>
+
+<p>Quand vous utilisez un site multi-langue, vous pouvez avoir des menus différents pour chaque langage. Dans le fichier de configuration <code class="language-plaintext highlighter-rouge">config.toml</code>, préfixez votre configuration par <code class="language-plaintext highlighter-rouge">Languages.&lt;language-id&gt;</code>.</p>
+
+<p>Par exemple, avec ce site :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Languages]
+[Languages.en]
+title = "Documentation for Hugo Learn Theme"
+weight = 1
+languageName = "English"
+
+[[Languages.en.menu.shortcuts]] 
+name = "&lt;i class='fab fa-github'&gt;&lt;/i&gt; Github repo"
+identifier = "ds"
+url = "https://github.com/matcornic/hugo-theme-learn"
+weight = 10
+
+[[Languages.en.menu.shortcuts]]
+name = "&lt;i class='fas fa-camera'&gt;&lt;/i&gt; Showcases"
+url = "/showcase"
+weight = 11
+
+[[Languages.en.menu.shortcuts]]
+name = "&lt;i class='fas fa-bookmark'&gt;&lt;/i&gt; Hugo Documentation"
+identifier = "hugodoc"
+url = "https://gohugo.io/"
+weight = 20
+
+[[Languages.en.menu.shortcuts]]
+name = "&lt;i class='fas fa-bullhorn'&gt;&lt;/i&gt; Credits"
+url = "/credits"
+weight = 30
+
+[Languages.fr]
+title = "Documentation du thème Hugo Learn"
+weight = 2
+languageName = "Français"
+
+[[Languages.fr.menu.shortcuts]]
+name = "&lt;i class='fab fa-github'&gt;&lt;/i&gt; Repo Github"
+identifier = "ds"
+url = "https://github.com/matcornic/hugo-theme-learn"
+weight = 10
+
+[[Languages.fr.menu.shortcuts]]
+name = "&lt;i class='fas fa-camera'&gt;&lt;/i&gt; Vitrine"
+url = "/showcase"
+weight = 11
+
+[[Languages.fr.menu.shortcuts]]
+name = "&lt;i class='fas fa-bookmark'&gt;&lt;/i&gt; Documentation Hugo"
+identifier = "hugodoc"
+url = "https://gohugo.io/"
+weight = 20
+
+[[Languages.fr.menu.shortcuts]]
+name = "&lt;i class='fas fa-bullhorn'&gt;&lt;/i&gt; Crédits"
+url = "/credits"
+weight = 30
+</code></pre></div></div>
+
+<p>Plus d’infos sur <a href="https://gohugo.io/extras/menus/">les menus Hugo</a> et les <a href="https://gohugo.io/content-management/multilingual/#menus">menus multi-langue Hugo</a></p>
