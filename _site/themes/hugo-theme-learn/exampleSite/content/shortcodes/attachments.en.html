@@ -1,0 +1,117 @@
+<p>The Attachments shortcode displays a list of files attached to a page.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>The shortcurt lists files found in a <strong>specific folder</strong>.
+Currently, it support two implementations for pages</p>
+
+<ol>
+  <li>
+    <p>If your page is a markdown file, attachements must be place in a <strong>folder</strong> named like your page and ending with <strong>.files</strong>.</p>
+
+    <blockquote>
+      <ul>
+        <li>content
+          <ul>
+            <li>_index.md</li>
+            <li>page.files
+              <ul>
+                <li>attachment.pdf</li>
+              </ul>
+            </li>
+            <li>page.md</li>
+          </ul>
+        </li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>
+    <p>If your page is a <strong>folder</strong>, attachements must be place in a nested <strong>‘files’</strong> folder.</p>
+
+    <blockquote>
+      <ul>
+        <li>content
+          <ul>
+            <li>_index.md</li>
+            <li>page
+              <ul>
+                <li>index.md</li>
+                <li>files
+                  <ul>
+                    <li>attachment.pdf</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </blockquote>
+  </li>
+</ol>
+
+<p>Be aware that if you use a multilingual website, you will need to have as many folders as languages.</p>
+
+<p>That’s all !</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Parameter</th>
+      <th style="text-align: left">Default</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">title</td>
+      <td style="text-align: left">“Attachments”</td>
+      <td style="text-align: left">List’s title</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">style</td>
+      <td style="text-align: left">””</td>
+      <td style="text-align: left">Choose between “orange”, “grey”, “blue” and “green” for nice style</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pattern</td>
+      <td style="text-align: left">”.*”</td>
+      <td style="text-align: left">A regular expressions, used to filter the attachments by file name. <br /><br />The <strong>pattern</strong> parameter value must be <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For example:</p>
+
+<ul>
+  <li>To match a file suffix of ‘jpg’, use <strong>.*jpg</strong> (not *.jpg).</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>To match file names ending in ‘jpg’ or ‘png’, use <em>*.</em>(jpg</td>
+          <td>png)**</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="examples">Examples</h3>
+
+<h4 id="list-of-attachments-ending-in-pdf-or-mp4">List of attachments ending in pdf or mp4</h4>
+
+<p>renders as</p>
+
+<h4 id="colored-styled-box">Colored styled box</h4>
+
+<p>renders as</p>
+
+<p>renders as</p>
+
+<p>renders as</p>
+
+<p>renders as</p>
+

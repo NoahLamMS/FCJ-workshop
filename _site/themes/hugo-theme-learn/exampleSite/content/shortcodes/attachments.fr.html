@@ -1,0 +1,117 @@
+<p>Le shortcode <em>Attachments</em> affiche une liste de pièces jointes d’une page.</p>
+
+<h2 id="utilisation">Utilisation</h2>
+
+<p>Le shortcode affiche la liste de fichiers trouvés dans un <strong>dossier spécifique</strong>
+A l’heure actuelle, il supporte deux implémentations</p>
+
+<ol>
+  <li>
+    <p>Si votre page est un fichier Markdown, les pièces jointes doivent être placée dans un <strong>dossier</strong> nommé comme le nom de la page et suffixé par <strong>.files</strong>.</p>
+
+    <blockquote>
+      <ul>
+        <li>content
+          <ul>
+            <li>_index.md</li>
+            <li>page.files
+              <ul>
+                <li>attachment.pdf</li>
+              </ul>
+            </li>
+            <li>page.md</li>
+          </ul>
+        </li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>
+    <p>Si votre page est un <strong>dossier</strong>, les pièces jointes doivent être placées dans un dossier fils <strong>‘files’</strong>.</p>
+
+    <blockquote>
+      <ul>
+        <li>content
+          <ul>
+            <li>_index.md</li>
+            <li>page
+              <ul>
+                <li>index.md</li>
+                <li>files
+                  <ul>
+                    <li>attachment.pdf</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </blockquote>
+  </li>
+</ol>
+
+<p>Attention, si votre site est multi-langue, vous devrez avec autant de dossier qu’il y a de langues.</p>
+
+<p>C’est tout !</p>
+
+<h3 id="paramètres">Paramètres</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Paramètre</th>
+      <th style="text-align: left">Défaut</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">title</td>
+      <td style="text-align: left">“Pièces jointes”</td>
+      <td style="text-align: left">Titre de la liste</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">style</td>
+      <td style="text-align: left">””</td>
+      <td style="text-align: left">Choisir entre “orange”, “grey”, “blue” et “green” pour un style plus sympa</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pattern</td>
+      <td style="text-align: left">”.*”</td>
+      <td style="text-align: left">Une expression régulière, utilisée pour filtrer les pièces jointes par leur nom de fichier. <br /><br />Le paramètre <strong>pattern</strong> doit être une <a href="https://en.wikipedia.org/wiki/Regular_expression">expression régulière</a>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Par exemple:</p>
+
+<ul>
+  <li>Pour trouver les fichiers avec le suffixe ‘jpg’, utilisez <strong>.*jpg</strong> (pas *.jpg).</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Pour trouver les fichiers avec les suffixe ‘jpg’ ou ‘png’, utilisez <em>*.</em>(jpg</td>
+          <td>png)**</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="exemples">Exemples</h3>
+
+<h4 id="lister-les-pièces-jointes-de-type-pdf-ou-mp4">Lister les pièces jointes de type pdf ou mp4</h4>
+
+<p>s’affiche comme</p>
+
+<h4 id="modifier-le-style">Modifier le style</h4>
+
+<p>s’affiche comme</p>
+
+<p>s’affiche comme</p>
+
+<p>s’affiche comme</p>
+
+<p>s’affiche comme</p>
+

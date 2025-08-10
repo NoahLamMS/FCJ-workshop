@@ -1,0 +1,263 @@
+<p><a href="https://mermaidjs.github.io/">Mermaid</a> est une bibliothèque Javascript qui permet de générer des diagrammes (séquence, état, gantt, etc.) à partir de texte, dans le même style que Markdown.</p>
+
+<p>Insérer votre code Mermaid dans un shortcode <code class="language-plaintext highlighter-rouge">mermaid</code> et c’est tout.</p>
+
+<h2 id="flowchart-example">Flowchart example</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>graph LR;
+	A[Bords droits] --&gt;|Lien texte| B(Bords arondis)
+	B --&gt; C{Décision}
+	C --&gt;|Un| D[Résultat un]
+	C --&gt;|Deux| E[Résultat deux]
+</code></pre></div></div>
+
+<p>renders as</p>
+
+<p>graph LR;
+	A[Bords droits] –&gt;|Lien texte| B(Bords arondis)
+	B –&gt; C{Décision}
+	C –&gt;|Un| D[Résultat un]
+	C –&gt;|Deux| E[Résultat deux]</p>
+
+<p>or you can use this alternative syntax:</p>
+
+<pre>
+```mermaid
+graph LR;
+	A[Bords droits] --&gt;|Lien texte| B(Bords arondis)
+	B --&gt; C{Décision}
+	C --&gt;|Un| D[Résultat un]
+	C --&gt;|Deux| E[Résultat deux]
+```
+</pre>
+
+<p>renders as</p>
+
+<pre><code class="language-mermaid">graph LR;
+	A[Bords droits] --&gt;|Lien texte| B(Bords arondis)
+	B --&gt; C{Décision}
+	C --&gt;|Un| D[Résultat un]
+	C --&gt;|Deux| E[Résultat deux]
+</code></pre>
+
+<h2 id="sequence-example">Sequence example</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice-&gt;&gt;John: Salut John, comment vas-tu?
+    loop Vérification
+        John-&gt;John: Se bat contre l'hyponcodrie.
+    end
+    Note right of John: Les pensées rationnelles&lt;br/&gt;prédominent...
+    John--&gt;Alice: Super!
+    John-&gt;Bob: Et toi?
+    Bob--&gt;John: Au top!
+</code></pre></div></div>
+
+<p>renders as</p>
+
+<p>sequenceDiagram
+	participant Alice
+	participant Bob
+	Alice-»John: Salut John, comment vas-tu?
+	loop Vérification
+		John-&gt;John: Se bat contre l’hyponcodrie.
+	end
+	Note right of John: Les pensées rationnelles<br />prédominent…
+	John–&gt;Alice: Super!
+	John-&gt;Bob: Et toi?
+	Bob–&gt;John: Au top!</p>
+
+<p>or you can use this alternative syntax:</p>
+
+<pre>
+```mermaid
+sequenceDiagram
+	participant Alice
+	participant Bob
+	Alice-&gt;&gt;John: Salut John, comment vas-tu?
+	loop Vérification
+		John-&gt;John: Se bat contre l'hyponcodrie.
+	end
+	Note right of John: Les pensées rationnelles<br />prédominent...
+	John--&gt;Alice: Super!
+	John-&gt;Bob: Et toi?
+	Bob--&gt;John: Au top!
+```
+</pre>
+
+<p>renders as</p>
+
+<pre><code class="language-mermaid">sequenceDiagram
+	participant Alice
+	participant Bob
+	Alice-&gt;&gt;John: Salut John, comment vas-tu?
+	loop Vérification
+		John-&gt;John: Se bat contre l'hyponcodrie.
+	end
+	Note right of John: Les pensées rationnelles&lt;br/&gt;prédominent...
+	John--&gt;Alice: Super!
+	John-&gt;Bob: Et toi?
+	Bob--&gt;John: Au top!
+</code></pre>
+
+<h2 id="gantt-example">GANTT Example</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gantt
+        dateFormat  YYYY-MM-DD
+        title Ajout de la fonctionnalité de GANTT à Mermaid
+        section Une section
+        Tâche complétée            :done,    des1, 2014-01-06,2014-01-08
+        Tâche en cours             :active,  des2, 2014-01-09, 3d
+        Future tâche               :         des3, after des2, 5d
+        Future tâche 2             :         des4, after des3, 5d
+        section Tâches critiques
+        Tâche complétée dans le chemin critique :crit, done, 2014-01-06,24h
+        Implémenter le parser et jison          :crit, done, after des1, 2d
+        Créer des tests pour le parser          :crit, active, 3d
+        Future tâche dans le chemin critique    :crit, 5d
+        Créer des tests pour le renderer        :2d
+        Ajout à Mermaid                      	:1d
+</code></pre></div></div>
+
+<p>renders as</p>
+
+<p>gantt
+		dateFormat  YYYY-MM-DD
+		title Ajout de la fonctionnalité de GANTT à Mermaid
+		section Une section
+		Tâche complétée            :done,    des1, 2014-01-06,2014-01-08
+		Tâche en cours             :active,  des2, 2014-01-09, 3d
+		Future tâche               :         des3, after des2, 5d
+		Future tâche 2             :         des4, after des3, 5d
+		section Tâches critiques
+		Tâche complétée dans le chemin critique :crit, done, 2014-01-06,24h
+		Implémenter le parser et jison          :crit, done, after des1, 2d
+		Créer des tests pour le parser             :crit, active, 3d
+		Future tâche dans le chemin critique        :crit, 5d
+		Créer des tests pour le renderer           :2d
+		Ajout à Mermaid                      :1d</p>
+
+<p>or you can use this alternative syntax:</p>
+
+<pre>
+```mermaid
+gantt
+		dateFormat  YYYY-MM-DD
+		title Ajout de la fonctionnalité de GANTT à Mermaid
+		section Une section
+		Tâche complétée            :done,    des1, 2014-01-06,2014-01-08
+		Tâche en cours             :active,  des2, 2014-01-09, 3d
+		Future tâche               :         des3, after des2, 5d
+		Future tâche 2             :         des4, after des3, 5d
+		section Tâches critiques
+		Tâche complétée dans le chemin critique :crit, done, 2014-01-06,24h
+		Implémenter le parser et jison          :crit, done, after des1, 2d
+		Créer des tests pour le parser             :crit, active, 3d
+		Future tâche dans le chemin critique        :crit, 5d
+		Créer des tests pour le renderer           :2d
+		Ajout à Mermaid                      :1d
+```
+</pre>
+
+<p>renders as</p>
+
+<pre><code class="language-mermaid">gantt
+		dateFormat  YYYY-MM-DD
+		title Ajout de la fonctionnalité de GANTT à Mermaid
+		section Une section
+		Tâche complétée            :done,    des1, 2014-01-06,2014-01-08
+		Tâche en cours             :active,  des2, 2014-01-09, 3d
+		Future tâche               :         des3, after des2, 5d
+		Future tâche 2             :         des4, after des3, 5d
+		section Tâches critiques
+		Tâche complétée dans le chemin critique :crit, done, 2014-01-06,24h
+		Implémenter le parser et jison          :crit, done, after des1, 2d
+		Créer des tests pour le parser             :crit, active, 3d
+		Future tâche dans le chemin critique        :crit, 5d
+		Créer des tests pour le renderer           :2d
+		Ajout à Mermaid                      :1d
+</code></pre>
+
+<h3 id="class-example">Class example</h3>
+
+<pre>
+```mermaid
+classDiagram
+  Class01 &lt;|-- AveryLongClass : Cool
+  Class03 *-- Class04
+  Class05 o-- Class06
+  Class07 .. Class08
+  Class09 --&gt; C2 : Where am i?
+  Class09 --* C3
+  Class09 --|&gt; Class07
+  Class07 : equals()
+  Class07 : Object[] elementData
+  Class01 : size()
+  Class01 : int chimp
+  Class01 : int gorilla
+  Class08 &lt;--&gt; C2: Cool label
+```
+</pre>
+
+<p>renders as</p>
+
+<pre><code class="language-mermaid">classDiagram
+  Class01 &lt;|-- AveryLongClass : Cool
+  Class03 *-- Class04
+  Class05 o-- Class06
+  Class07 .. Class08
+  Class09 --&gt; C2 : Where am i?
+  Class09 --* C3
+  Class09 --|&gt; Class07
+  Class07 : equals()
+  Class07 : Object[] elementData
+  Class01 : size()
+  Class01 : int chimp
+  Class01 : int gorilla
+  Class08 &lt;--&gt; C2: Cool label
+</code></pre>
+
+<h3 id="git-example">Git example</h3>
+
+<pre>
+```mermaid
+gitGraph:
+options
+{
+  "nodeSpacing": 150,
+  "nodeRadius": 10
+}
+end
+  commit
+  branch newbranch
+  checkout newbranch
+  commit
+  commit
+  checkout master
+  commit
+  commit
+  merge newbranch
+```
+</pre>
+
+<p>renders as</p>
+
+<pre><code class="language-mermaid">gitGraph:
+options
+{
+  "nodeSpacing": 150,
+  "nodeRadius": 10
+}
+end
+  commit
+  branch newbranch
+  checkout newbranch
+  commit
+  commit
+  checkout master
+  commit
+  commit
+  merge newbranch
+</code></pre>

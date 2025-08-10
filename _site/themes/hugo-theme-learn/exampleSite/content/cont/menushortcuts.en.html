@@ -1,0 +1,105 @@
+<p>You can define additional menu entries or shortcuts in the navigation menu without any link to content.</p>
+
+<h2 id="basic-configuration">Basic configuration</h2>
+
+<p>Edit the website configuration <code class="language-plaintext highlighter-rouge">config.toml</code> and add a <code class="language-plaintext highlighter-rouge">[[menu.shortcuts]]</code> entry for each link your want to add.</p>
+
+<p>Example from the current website:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[menu.shortcuts]] 
+name = "&lt;i class='fab fa-github'&gt;&lt;/i&gt; Github repo"
+identifier = "ds"
+url = "https://github.com/matcornic/hugo-theme-learn"
+weight = 10
+
+[[menu.shortcuts]]
+name = "&lt;i class='fas fa-camera'&gt;&lt;/i&gt; Showcases"
+url = "/showcase"
+weight = 11
+
+[[menu.shortcuts]]
+name = "&lt;i class='fas fa-bookmark'&gt;&lt;/i&gt; Hugo Documentation"
+identifier = "hugodoc"
+url = "https://gohugo.io/"
+weight = 20
+
+[[menu.shortcuts]]
+name = "&lt;i class='fas fa-bullhorn'&gt;&lt;/i&gt; Credits"
+url = "/credits"
+weight = 30
+</code></pre></div></div>
+
+<p>By default, shortcuts are preceded by a title. This title can be disabled by setting <code class="language-plaintext highlighter-rouge">disableShortcutsTitle=true</code>. 
+However, if you want to keep the title but change its value, it can be overriden by changing your local i18n translation string configuration.</p>
+
+<p>For example, in your local <code class="language-plaintext highlighter-rouge">i18n/en.toml</code> file, add the following content</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Shortcuts-Title]
+other = "&lt;Your value&gt;"
+</code></pre></div></div>
+
+<p>Read more about <a href="https://gohugo.io/extras/menus/">hugo menu</a> and <a href="https://gohugo.io/content-management/multilingual/#translation-of-strings">hugo i18n translation strings</a></p>
+
+<h2 id="i18n">Configuration for Multilingual mode</h2>
+
+<p>When using a multilingual website, you can set different menus for each language. In the <code class="language-plaintext highlighter-rouge">config.toml</code> file, prefix your menu configuration by <code class="language-plaintext highlighter-rouge">Languages.&lt;language-id&gt;</code>.</p>
+
+<p>Example from the current website:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Languages]
+[Languages.en]
+title = "Documentation for Hugo Learn Theme"
+weight = 1
+languageName = "English"
+
+[[Languages.en.menu.shortcuts]] 
+name = "&lt;i class='fab fa-github'&gt;&lt;/i&gt; Github repo"
+identifier = "ds"
+url = "https://github.com/matcornic/hugo-theme-learn"
+weight = 10
+
+[[Languages.en.menu.shortcuts]]
+name = "&lt;i class='fas fa-camera'&gt;&lt;/i&gt; Showcases"
+url = "/showcase"
+weight = 11
+
+[[Languages.en.menu.shortcuts]]
+name = "&lt;i class='fas fa-bookmark'&gt;&lt;/i&gt; Hugo Documentation"
+identifier = "hugodoc"
+url = "https://gohugo.io/"
+weight = 20
+
+[[Languages.en.menu.shortcuts]]
+name = "&lt;i class='fas fa-bullhorn'&gt;&lt;/i&gt; Credits"
+url = "/credits"
+weight = 30
+
+[Languages.fr]
+title = "Documentation du thème Hugo Learn"
+weight = 2
+languageName = "Français"
+
+[[Languages.fr.menu.shortcuts]]
+name = "&lt;i class='fab fa-github'&gt;&lt;/i&gt; Repo Github"
+identifier = "ds"
+url = "https://github.com/matcornic/hugo-theme-learn"
+weight = 10
+
+[[Languages.fr.menu.shortcuts]]
+name = "&lt;i class='fas fa-camera'&gt;&lt;/i&gt; Vitrine"
+url = "/showcase"
+weight = 11
+
+[[Languages.fr.menu.shortcuts]]
+name = "&lt;i class='fas fa-bookmark'&gt;&lt;/i&gt; Documentation Hugo"
+identifier = "hugodoc"
+url = "https://gohugo.io/"
+weight = 20
+
+[[Languages.fr.menu.shortcuts]]
+name = "&lt;i class='fas fa-bullhorn'&gt;&lt;/i&gt; Crédits"
+url = "/credits"
+weight = 30
+</code></pre></div></div>
+
+<p>Read more about <a href="https://gohugo.io/extras/menus/">hugo menu</a> and <a href="https://gohugo.io/content-management/multilingual/#menus">hugo multilingual menus</a></p>

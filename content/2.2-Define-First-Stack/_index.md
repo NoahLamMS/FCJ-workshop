@@ -54,6 +54,3 @@ Deploy:
 ```bash
 cdk deploy
 ```
-
-Result:
-![lambda](image.png)
